@@ -119,7 +119,7 @@
                     </a>
                 </div>
 
-                <!-- Menu links -->
+                <!-- Desktop links -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="text-gray-700 hover:text-orange-500 transition">About</a>
                     <a href="#research" class="text-gray-700 hover:text-orange-500 transition">Research</a>
@@ -130,13 +130,34 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-gray-700">
-                        <i data-feather="menu"></i>
+                    <button id="mobileMenuButton" class="p-2 rounded-md text-gray-700 focus:outline-none"
+                        aria-controls="mobileMenu" aria-expanded="false">
+                        <!-- two icons, we toggle visibility -->
+                        <i id="iconMenuOpen" data-feather="menu" class="w-6 h-6"></i>
+                        <i id="iconMenuClose" data-feather="x" class="w-6 h-6 hidden"></i>
+                        <span class="sr-only">Toggle menu</span>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile menu panel -->
+    <div id="mobileMenu"
+        class="md:hidden fixed top-16 inset-x-0 bg-white/95 backdrop-blur border-t border-gray-200 shadow-lg hidden z-50">
+        <div class="px-4 py-3 space-y-1">
+            <a href="#about"
+                class="block px-3 py-3 rounded-md text-gray-800 hover:text-orange-600 hover:bg-gray-50">About</a>
+            <a href="#research"
+                class="block px-3 py-3 rounded-md text-gray-800 hover:text-orange-600 hover:bg-gray-50">Research</a>
+            <a href="#consortium"
+                class="block px-3 py-3 rounded-md text-gray-800 hover:text-orange-600 hover:bg-gray-50">Consortium</a>
+            <a href="#outcomes"
+                class="block px-3 py-3 rounded-md text-gray-800 hover:text-orange-600 hover:bg-gray-50">Outcomes</a>
+            <a href="#contact"
+                class="block px-3 py-3 rounded-md text-gray-800 hover:text-orange-600 hover:bg-gray-50">Contact</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="top" class="relative overflow-hidden text-white">
@@ -180,15 +201,16 @@
                 </div>
 
                 <!-- Partner logos -->
-                <div class="mt-20 grid grid-cols-2 md:grid-cols-7 gap-4 items-center justify-center">
-                    <img src="logo-ut3.png" alt="UT3" class="partner-logo h-12 mx-auto brightness-200">
-                    <img src="logo-laas.png" alt="CNRS" class="partner-logo h-12 mx-auto brightness-200">
-                    <img src="logo-insa.svg" alt="INSA Lyon" class="partner-logo h-12 mx-aut brightness-200">
-                    <img src="logo-ens.svg" alt="ENS Lyon" class="partner-logo h-12 mx-auto brightness-200 invert">
-                    <img src="logo-str.svg" alt="Univ. Strasbourg" class="partner-logo h-12 mx-auto brightness-200">
-                    <img src="logo-inp.svg" alt="Grenoble INP" class="partner-logo h-12 mx-auto brightness-200">
-                    <img src="logo-cea.svg" alt="CEA" class="partner-logo h-12 mx-auto brightness-200">
+                <div class="mt-20 flex flex-wrap justify-center items-center gap-8">
+                    <img src="logo-ut3.png" alt="UT3" class="h-12 object-contain brightness-200">
+                    <img src="logo-laas.png" alt="CNRS" class="h-12 object-contain brightness-200">
+                    <img src="logo-insa.svg" alt="INSA Lyon" class="h-12 object-contain brightness-200">
+                    <img src="logo-ens.svg" alt="ENS Lyon" class="h-12 object-contain brightness-200 invert">
+                    <img src="logo-str.svg" alt="Univ. Strasbourg" class="h-12 object-contain brightness-200">
+                    <img src="logo-inp.svg" alt="Grenoble INP" class="h-12 object-contain brightness-200">
+                    <img src="logo-cea.svg" alt="CEA" class="h-12 object-contain brightness-200">
                 </div>
+
             </div>
         </div>
     </section>
@@ -669,6 +691,40 @@
             resizeCanvas();
             drawStars();
         })();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobileMenuButton');
+            const menu = document.getElementById('mobileMenu');
+            const openIcon = document.getElementById('iconMenuOpen');
+            const closeIcon = document.getElementById('iconMenuClose');
+
+            function toggleMenu() {
+                const isOpen = !menu.classList.contains('hidden');
+                if (isOpen) {
+                    menu.classList.add('hidden');
+                    btn.setAttribute('aria-expanded', 'false');
+                    openIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                } else {
+                    menu.classList.remove('hidden');
+                    btn.setAttribute('aria-expanded', 'true');
+                    openIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                }
+            }
+
+            btn.addEventListener('click', toggleMenu);
+
+            // close menu after clicking a link (on mobile)
+            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                if (window.innerWidth < 768 && !menu.classList.contains('hidden')) toggleMenu();
+            }));
+
+            // Feather icons
+            if (window.feather) window.feather.replace();
+        });
     </script>
 </body>
 

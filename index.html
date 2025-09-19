@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DONUTS - Designing Multiscale, Multitechnology Networks of the Future</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #f68a3f 0%, #ff6a3d 50%, #ffd43b 100%);
+        }
+
+        .partner-logo {
+            filter: grayscale(100%) brightness(0.5);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .outcome-card:hover .outcome-icon {
+            transform: scale(1.1);
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 60s linear infinite;
+        }
+
+        .section-divider {
+            height: 50px;
+            width: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(230, 230, 230, 1));
+        }
+
+        .text-shadow {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .text-shadow-lg {
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            /* allows clicking through */
+            z-index: 5;
+            /* adjust: lower than nav (z-50), higher than backgrounds */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+
+                <!-- Logo + Text -->
+                <div class="flex items-center">
+                    <a href="#top" class="flex items-center space-x-2">
+                        <img src="img-logo-donuts-black.svg" alt="DONUTS Logo" class="h-8 w-auto">
+                        <span class="text-xl font-bold text-gray-900">DONUTS</span>
+                    </a>
+                </div>
+
+                <!-- Menu links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-orange-500 transition">About</a>
+                    <a href="#research" class="text-gray-700 hover:text-orange-500 transition">Research</a>
+                    <a href="#consortium" class="text-gray-700 hover:text-orange-500 transition">Consortium</a>
+                    <a href="#outcomes" class="text-gray-700 hover:text-orange-500 transition">Outcomes</a>
+                    <a href="#contact" class="text-gray-700 hover:text-orange-500 transition">Contact</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-700">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="top" class="relative overflow-hidden text-white">
+
+        <!-- Parallax background -->
+        <div class="absolute inset-0 bg-fixed bg-cover bg-center" style="background-image: url('background-parallax-2.jpg'); 
+                background-attachment: fixed; 
+                background-size: cover; 
+                background-position: center;">
+            <!-- <div class="absolute inset-0 bg-gradient-to-br from-orange-500/70 via-orange-400/60 to-yellow-400/70"></div> -->
+            <!-- <div class="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-orange-400/10 to-yellow-400/20"></div> -->
+            <!-- <div class="absolute inset-0 bg-black/60"></div> -->
+            <!-- <div class="absolute inset-0 bg-[#0b1d3a]/80"></div> -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0b1d3a]/80 via-[#0b1d3a]/80 to-transparent"></div>
+        </div>
+
+        <!-- Subtle animated background logo -->
+        <div class="absolute inset-0 flex items-center justify-center z-0">
+            <!-- <img src="img-logo-donuts.svg" alt="DONUTS Background Logo" class="w-[60%] opacity-15 animate-spin-slow blur-sm md:blur-md"> -->
+            <img src="img-logo-donuts.svg" alt="DONUTS Background Logo"
+                class="w-[60%] opacity-15 animate-spin-slow animate-pulse-slow blur-[8px]">
+        </div>
+
+        <div class="relative z-10 pt-24 pb-16 md:pt-32 md:pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Logo + Title -->
+                <div class="flex flex-col items-center justify-center text-center" data-aos="fade-up">
+                    <img src="img-logo-donuts.svg" alt="DONUTS Logo" class="h-28 md:h-40 mb-6">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-shadow">DONUTS Project</h1>
+                    <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-shadow">
+                        Design and Modeling of Multiscale Multitechnology Networks of the Future
+                    </p>
+                    <p class="text-lg mb-12 max-w-3xl mx-auto text-shadow">
+                        From 5/6G to Seamless Space-Air-Ground Integrated Networks
+                    </p>
+                    <a href="#about"
+                        class="inline-block bg-white text-orange-600 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                        Learn More
+                    </a>
+                </div>
+
+                <!-- Partner logos -->
+                <div class="mt-20 grid grid-cols-2 md:grid-cols-7 gap-4 items-center justify-center">
+                    <img src="logo-ut3.png" alt="UT3" class="partner-logo h-12 mx-auto brightness-200">
+                    <img src="logo-laas.png" alt="CNRS" class="partner-logo h-12 mx-auto brightness-200">
+                    <img src="logo-insa.svg" alt="INSA Lyon" class="partner-logo h-12 mx-aut brightness-200">
+                    <img src="logo-ens.svg" alt="ENS Lyon" class="partner-logo h-12 mx-auto brightness-200 invert">
+                    <img src="logo-str.svg" alt="Univ. Strasbourg" class="partner-logo h-12 mx-auto brightness-200">
+                    <img src="logo-inp.svg" alt="Grenoble INP" class="partner-logo h-12 mx-auto brightness-200">
+                    <img src="logo-cea.svg" alt="CEA" class="partner-logo h-12 mx-auto brightness-200">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section heading -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">About the Project</h2>
+                <div class="w-20 h-1 bg-[#1bb1e7] mx-auto"></div>
+            </div>
+
+            <!-- Text on the left, bullets on the right -->
+            <div class="md:grid md:grid-cols-2 md:gap-12 items-start">
+
+                <!-- Left column: intro text -->
+                <div data-aos="fade-right">
+                    <p class="text-lg text-gray-700 mb-6">
+                        DONUTS is a French PEPR-funded research initiative that pioneers seamless integration of space,
+                        air, and ground networks. It aims to enhance global communication, navigation, and sensing
+                        capabilities through next-generation 5/6G and non-terrestrial networks.
+                    </p>
+                </div>
+
+                <!-- Right column: bullet list -->
+                <div data-aos="fade-left" class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div
+                                class="flex items-center justify-center h-6 w-6 rounded-full bg-[#1bb1e7]/20 text-[#1bb1e7]">
+                                <i data-feather="check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <p class="ml-3 text-gray-700">Build the space-air-ground continuum</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div
+                                class="flex items-center justify-center h-6 w-6 rounded-full bg-orange-100 text-orange-600">
+                                <i data-feather="check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <p class="ml-3 text-gray-700">Achieve multi-technology, multi-scale resource management</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div
+                                class="flex items-center justify-center h-6 w-6 rounded-full bg-[#1bb1e7]/20 text-[#1bb1e7]">
+                                <i data-feather="check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <p class="ml-3 text-gray-700">Develop adaptive control algorithms</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div
+                                class="flex items-center justify-center h-6 w-6 rounded-full bg-orange-100 text-orange-600">
+                                <i data-feather="check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <p class="ml-3 text-gray-700">Create a Network Digital Twin (NDT) for real-time optimization</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <div
+                                class="flex items-center justify-center h-6 w-6 rounded-full bg-[#1bb1e7]/20 text-[#1bb1e7]">
+                                <i data-feather="check" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <p class="ml-3 text-gray-700">Deliver an integrated demonstrator showcasing these innovations
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full-width figure below -->
+            <div class="mt-16" data-aos="fade-up">
+                <img src="donuts-fig.svg" alt="DONUTS Network Illustration"
+                    class="w-full max-w-5xl mx-auto rounded-lg shadow-xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider relative">
+    </div>
+
+    <!-- Research Challenges -->
+    <!-- <section id="research" class="py-20 bg-gray-50"> -->
+    <section id="research" class="py-20 bg-[#e6e6e6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Research Challenges</h2>
+                <div class="w-20 h-1 bg-orange-500 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- T1 -->
+                <div class="research-card bg-white p-6 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div
+                        class="flex items-center justify-center h-12 w-12 rounded-md bg-[#1bb1e7]/20 text-[#1bb1e7] mb-4">
+                        <i data-feather="globe" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-[#0b1d3a] mb-2">T1: Space-Air-Ground Continuum</h3>
+                    <p class="text-[#0b1d3a]/80">Architecture, use cases, network function placement and orchestration.
+                    </p>
+                </div>
+
+                <!-- T2 -->
+                <div class="research-card bg-white p-6 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div
+                        class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-100 text-orange-600 mb-4">
+                        <i data-feather="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">T2: Multi-Technology & Multi-Scale Resource
+                        Management</h3>
+                    <p class="text-gray-600">Multi-RAT/multi-path, direct access, deterministic latency.</p>
+                </div>
+
+                <!-- T3 -->
+                <div class="research-card bg-white p-6 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <div
+                        class="flex items-center justify-center h-12 w-12 rounded-md bg-[#1bb1e7]/20 text-[#1bb1e7] mb-4">
+                        <i data-feather="activity" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">T3: Adaptive Control</h3>
+                    <p class="text-gray-600">Forecasting algorithms, mobility management, adaptive optimization.</p>
+                </div>
+
+                <!-- T4 -->
+                <div class="research-card bg-white p-6 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <div
+                        class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-100 text-orange-600 mb-4">
+                        <i data-feather="layers" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">T4: Network Digital Twin</h3>
+                    <p class="text-gray-600">Modeling, calibration, validation for efficient NDT.</p>
+                </div>
+
+                <!-- T5 -->
+                <div class="research-card bg-white p-6 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="500">
+                    <div
+                        class="flex items-center justify-center h-12 w-12 rounded-md bg-[#1bb1e7]/20 text-[#1bb1e7] mb-4">
+                        <i data-feather="box" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">T5: Integration & Demonstrator</h3>
+                    <p class="text-gray-600">Testbeds, integration, validation, and public demonstrator.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consortium Section -->
+    <section id="consortium" class="relative overflow-hidden text-gray-900">
+
+        <!-- Parallax background -->
+        <div class="absolute inset-0 bg-fixed bg-cover bg-center z-0" style="background-image: url('background-parallax-1.png'); 
+              background-attachment: fixed; 
+              background-size: cover; 
+              background-position: center;">
+            <div class="absolute inset-0 bg-[#0b1d3a]/80"></div>
+        </div>
+
+        <!-- Stars canvas -->
+        <!-- <canvas id="stars-canvas" class="absolute inset-0 z-10"></canvas> -->
+
+        <!-- Content (above parallax) -->
+        <div class="relative z-10 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-white mb-4">Consortium</h2>
+                    <div class="w-20 h-1 bg-[#1bb1e7] mx-auto"></div>
+                </div>
+
+                <!-- <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center"> -->
+                <div class="flex flex-wrap justify-center gap-8">
+
+                    <!-- Example card (repeat for all partners) -->
+                    <div class="bg-white p-6 rounded-lg text-center w-64 h-56 flex flex-col justify-between transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <img src="logo-cea.svg" alt="CEA"
+                            class="partner-logo h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition duration-300">
+                        <h3 class="text-lg font-medium text-orange-600 mb-2">CEA</h3>
+                        <p class="text-gray-600">Time-sensitive networking, SDN, AI for networking.</p>
+                    </div>
+
+                    <!-- Repeat the same hover style for all other cards -->
+                    <div class="bg-white p-6 rounded-lg text-center w-64 h-56 flex flex-col justify-between transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <img src="logo-insa.svg" alt="INSA Lyon"
+                            class="partner-logo h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition duration-300">
+                        <h3 class="text-lg font-medium text-orange-600 mb-2">CITI (INSA Lyon)</h3>
+                        <p class="text-gray-600">Wireless networks (cellular, satellite, IoT).</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg text-center w-64 h-56 flex flex-col justify-between transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <img src="logo-str.svg" alt="Univ. Strasbourg"
+                            class="partner-logo h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition duration-300">
+                        <h3 class="text-lg font-medium text-orange-600 mb-2">ICube (Univ. Strasbourg)</h3>
+                        <p class="text-gray-600">Protocol design, resource allocation, experiments.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg text-center w-64 h-56 flex flex-col justify-between transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        data-aos="fade-up" data-aos-delay="400">
+                        <img src="logo-ut3.png" alt="UT3"
+                            class="partner-logo h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition duration-300">
+                        <h3 class="text-lg font-medium text-orange-600 mb-2">IRIT (Univ. Toulouse III)</h3>
+                        <p class="text-gray-600">Satellite communications, hybrid 5G/NTN architectures.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg text-center w-64 h-56 flex flex-col justify-between transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        data-aos="fade-up" data-aos-delay="500">
+                        <img src="logo-laas.png" alt="LAAS-CNRS"
+                            class="partner-logo h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition duration-300">
+                        <h3 class="text-lg font-medium text-orange-600 mb-2">LAAS-CNRS</h3>
+                        <p class="text-gray-600">Monitoring, 5G, NTN, LPWAN for IoT.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg text-center w-64 h-56 flex flex-col justify-between transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        data-aos="fade-up" data-aos-delay="600">
+                        <img src="logo-ens.svg" alt="ENS Lyon"
+                            class="partner-logo h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition duration-300">
+                        <h3 class="text-lg font-medium text-orange-600 mb-2">LIP (ENS Lyon)</h3>
+                        <p class="text-gray-600">Analytical modeling, simulation, experiments.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg text-center w-64 h-56 flex flex-col justify-between transform transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        data-aos="fade-up" data-aos-delay="700">
+                        <img src="logo-inp.svg" alt="Grenoble INP"
+                            class="partner-logo h-12 mx-auto mb-4 grayscale hover:grayscale-0 transition duration-300">
+                        <h3 class="text-lg font-medium text-orange-600 mb-2">LIG (Grenoble INP)</h3>
+                        <p class="text-gray-600">Medium access control, LPWAN.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expected Outcomes -->
+    <section id="outcomes" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Expected Outcomes</h2>
+                <div class="w-20 h-1 bg-orange-500 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Outcome 1 -->
+                <div class="outcome-card bg-white p-8 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div
+                        class="outcome-icon flex items-center justify-center h-16 w-16 rounded-full bg-[#1bb1e7]/20 text-[#1bb1e7] mb-6 transition duration-300 mx-auto">
+                        <i data-feather="layout" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">New architectures for
+                        space-air-ground
+                        networks</h3>
+                    <p class="text-gray-600 text-center">Innovative network architectures enabling seamless
+                        space-air-ground integration.</p>
+                </div>
+
+                <!-- Outcome 2 -->
+                <div class="outcome-card bg-white p-8 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div
+                        class="outcome-icon flex items-center justify-center h-16 w-16 rounded-full bg-orange-100 text-orange-600 mb-6 transition duration-300 mx-auto">
+                        <i data-feather="clock" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">Deterministic latency for 6G
+                        applications</h3>
+                    <p class="text-gray-600 text-center">Guaranteed low-latency communication for critical 6G use cases.
+                    </p>
+                </div>
+
+                <!-- Outcome 3 -->
+                <div class="outcome-card bg-white p-8 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="300">
+                    <div
+                        class="outcome-icon flex items-center justify-center h-16 w-16 rounded-full bg-[#1bb1e7]/20 text-[#1bb1e7] mb-6 transition duration-300 mx-auto">
+                        <i data-feather="battery-charging" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">Energy-efficient and adaptive
+                        control</h3>
+                    <p class="text-gray-600 text-center">Sustainable network operations through intelligent resource
+                        management.</p>
+                </div>
+
+                <!-- Outcome 4 -->
+                <div class="outcome-card bg-white p-8 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="400">
+                    <div
+                        class="outcome-icon flex items-center justify-center h-16 w-16 rounded-full bg-orange-100 text-orange-600 mb-6 transition duration-300 mx-auto">
+                        <i data-feather="copy" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">Validated digital twin platforms
+                    </h3>
+                    <p class="text-gray-600 text-center">Accurate network simulation and optimization through digital
+                        twins.</p>
+                </div>
+
+                <!-- Outcome 5 -->
+                <div class="outcome-card bg-white p-8 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="500">
+                    <div
+                        class="outcome-icon flex items-center justify-center h-16 w-16 rounded-full bg-[#1bb1e7]/20 text-[#1bb1e7] mb-6 transition duration-300 mx-auto">
+                        <i data-feather="sliders" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">Open demonstrators</h3>
+                    <p class="text-gray-600 text-center">Public testbeds showcasing integrated space-air-ground
+                        capabilities.</p>
+                </div>
+
+                <!-- Outcome 6 -->
+                <div class="outcome-card bg-white p-8 rounded-xl shadow-md transition duration-300" data-aos="fade-up"
+                    data-aos-delay="600">
+                    <div
+                        class="outcome-icon flex items-center justify-center h-16 w-16 rounded-full bg-orange-100 text-orange-600 mb-6 transition duration-300 mx-auto">
+                        <i data-feather="users" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center text-gray-900 mb-4">Academic & industrial impact</h3>
+                    <p class="text-gray-600 text-center">Transferable results benefiting both research and industry
+                        stakeholders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="relative overflow-hidden text-white">
+
+        <!-- Parallax background -->
+        <div class="absolute inset-0 bg-fixed bg-cover bg-center z-0" style="background-image: url('background-parallax-1.png'); 
+              background-attachment: fixed; 
+              background-size: cover; 
+              background-position: center;">
+            <div class="absolute inset-0 bg-[#0b1d3a]/85"></div>
+        </div>
+
+        <!-- Footer content -->
+        <div class="relative z-10 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8">
+
+                    <!-- Contact -->
+                    <div data-aos="fade-up">
+                        <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                        <p class="mb-2">Project Coordinator</p>
+                        <p class="font-medium mb-2">Emmanuel Lavinal</p>
+                        <p class="mb-2">Université Toulouse III – IRIT</p>
+                        <a href="mailto:emmanuel.lavinal@irit.fr"
+                            class="text-orange-400 hover:text-orange-300">emmanuel.lavinal@irit.fr</a>
+                    </div>
+
+                    <!-- Funded by -->
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-lg font-semibold mb-4">Funded by</h3>
+                        <div class="flex space-x-6">
+                            <!-- Logo card -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm 
+                        flex items-center justify-center w-24 h-24">
+                                <img src="logo-f2030.svg" alt="France 2030" class="max-h-12 max-w-12">
+                            </div>
+                            <!-- Logo card -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm 
+                        flex items-center justify-center w-24 h-24">
+                                <img src="logo-anr.webp" alt="PEPR 5G" class="max-h-12 max-w-12">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Follow us -->
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-lg font-semibold mb-4">Follow us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="bg-gray-800 hover:bg-gray-700 h-10 w-10 rounded-full flex items-center justify-center transition">
+                                <i data-feather="twitter" class="w-5 h-5"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-gray-800 hover:bg-gray-700 h-10 w-10 rounded-full flex items-center justify-center transition">
+                                <i data-feather="linkedin" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-300" data-aos="fade-up">
+                    <p>© 2025 DONUTS Project. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script>
+        (function () {
+            const canvas = document.getElementById("stars-canvas");
+            const ctx = canvas.getContext("2d");
+            let stars = [];
+            let scrollOffset = 0;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initStars();
+            }
+
+            function initStars() {
+                stars = [];
+                for (let i = 0; i < 120; i++) {
+                    stars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        r: Math.random() * 1.2 + 0.3,
+                        alpha: Math.random(),
+                        dx: (Math.random() - 0.5) * 0.15,
+                        dy: (Math.random() - 0.5) * 0.15,
+                        depth: Math.random() * 2 + 0.5 // parallax factor
+                    });
+                }
+            }
+
+            function drawStars() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let s of stars) {
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y + scrollOffset * (s.depth * 0.05), s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = "rgba(255, 255, 255," + s.alpha + ")";
+                    ctx.fill();
+
+                    // Motion + twinkle
+                    s.x += s.dx;
+                    s.y += s.dy;
+                    s.alpha += (Math.random() - 0.5) * 0.03;
+                    if (s.alpha < 0.2) s.alpha = 0.2;
+                    if (s.alpha > 1) s.alpha = 1;
+
+                    if (s.x < 0 || s.x > canvas.width) s.dx *= -1;
+                    if (s.y < 0 || s.y > canvas.height) s.dy *= -1;
+                }
+                requestAnimationFrame(drawStars);
+            }
+
+            // Track scroll for parallax effect
+            window.addEventListener("scroll", () => {
+                scrollOffset = window.scrollY;
+            });
+
+            window.addEventListener("resize", resizeCanvas);
+            resizeCanvas();
+            drawStars();
+        })();
+    </script>
+</body>
+
+</html>
